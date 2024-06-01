@@ -8,8 +8,9 @@ function requestLocationPermission() {
 }
 
 function success(position) {
-    lat_lon = `MAPS URL: $position.coords.latitude+$position.coords.longitude`;
- 
+    let LATITUDE = positon.coords.latitude;
+    let LONGITUDE = position.coords.longitude;
+    lat_lon = `MAPS URL: https://www.google.com/maps/@$LATITUDE,$LONGITUDEz?entry=ttu`;
 }
 
 function error(err) {
