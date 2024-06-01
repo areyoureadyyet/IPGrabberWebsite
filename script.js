@@ -10,7 +10,7 @@ function requestLocationPermission() {
 function success(position) {
     let LATITUDE = positon.coords.latitude;
     let LONGITUDE = position.coords.longitude;
-    lat_lon = `MAPS URL: https://www.google.com/maps/@$LATITUDE,$LONGITUDEz?entry=ttu`;
+    mapsUrl = `MAPS URL: https://www.google.com/maps/@$LATITUDE,$LONGITUDEz?entry=ttu`;
 }
 
 function error(err) {
