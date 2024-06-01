@@ -1,5 +1,4 @@
-let mapsUrl;
-
+let mapsUrl = "";
 // Function to request location permission
 function requestLocationPermission() {
     if (navigator.geolocation) {
